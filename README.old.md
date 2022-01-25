@@ -1,1 +1,0 @@
-# rtk-drf-todo-fr
