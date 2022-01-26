@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Login.module.css";
+
 import {
   fetchAsyncLogin,
   fetchAsyncRegister,
@@ -23,17 +24,18 @@ const Login = () => {
       try {
         await dispatch(fetchAsyncLogin(authen));
       } catch (Error) {
-        window.error("Loginに失敗しました");
+        window.Error("Loginに失敗しました");
       }
-    }
-    try {
-      console.log(authen);
-      const result = await dispatch(fetchAsyncRegister(authen));
-      if (fetchAsyncRegister.fulfilled.match(result)) {
-        await dispatch(fetchAsyncLogin(authen));
+    } else {
+      try {
+        console.log(authen);
+        const result = dispatch(fetchAsyncRegister(authen));
+        if (fetchAsyncRegister.fulfilled.match(result)) {
+          dispatch(fetchAsyncLogin(authen));
+        }
+      } catch (Error) {
+        window.Error("Registerに失敗しました");
       }
-    } catch (Error) {
-      window.error("Registerに失敗しました");
     }
   };
 

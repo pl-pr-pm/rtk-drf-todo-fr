@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const apiUrl = "http://localhost:8000";
 
@@ -26,7 +27,7 @@ export const fetchAsyncRegister = createAsyncThunk(
 );
 
 export const fetchAsyncProf = createAsyncThunk("login/get", async (auth) => {
-  const res = await axios.get(`${apiUrl}/api/myself`, {
+  const res = await axios.get(`${apiUrl}/api/myself/`, {
     headers: { Authorization: `JWT ${token}` },
   });
   return res.data;

@@ -5,11 +5,14 @@ import { FaSignInAlt } from "react-icons/fa";
 import TaskList from "./features/task/TaskList";
 import TaskDetail from "./features/task/TaskDetail";
 import TaskInput from "./features/task/TaskInput";
+import Header from "./features/login/Header";
+import { useHistory } from "react-router-dom";
 
 function App() {
+  const history = useHistory();
   const logout = () => {
     localStorage.removeItem("localJWT");
-    window.location.href = "/";
+    history.push({ pathname: "/" });
   };
 
   return (
@@ -18,6 +21,7 @@ function App() {
         <button onClick={logout} className={styles.signBtn}>
           <FaSignInAlt />
         </button>
+        <Header />
         <TaskInput />
         <TaskList />
       </div>
